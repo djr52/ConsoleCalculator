@@ -34,9 +34,10 @@ namespace MyCalculator.Tests
             Calculator _calculator = new Calculator();
 
 
-            _calculator.CreateCalculation(_a, _b, _action);
-            
-            
+            var _result = _calculator.CreateCalculation(_a, _b, _action);
+
+            Assert.AreEqual(_result.GetResults(), 3);
+
 
             //var _result = _calculation.calculations[0].GetResults();
             //Console.WriteLine(_result);
@@ -52,8 +53,9 @@ namespace MyCalculator.Tests
             Func<double, double, double> _action = Operations.Difference;
             Calculator _calculator = new Calculator();
 
-            _calculator.CreateCalculation(_a, _b, _action);
+            var _result = _calculator.CreateCalculation(_a, _b, _action);
 
+            Assert.AreEqual(_result.GetResults(), 10);
         }
 
 
@@ -65,8 +67,9 @@ namespace MyCalculator.Tests
             Func<double, double, double> _action = Operations.Multiplication;
             Calculator _calculator = new Calculator();
 
-            _calculator.CreateCalculation(_a, _b, _action);
+            var _result = _calculator.CreateCalculation(_a, _b, _action);
 
+            Assert.AreEqual(_result.GetResults(), 75);
         }
         [TestMethod()]
         public void DivisionTest()
@@ -76,7 +79,9 @@ namespace MyCalculator.Tests
             Func<double, double, double> _action = Operations.Division;
             Calculator _calculator = new Calculator();
 
-            _calculator.CreateCalculation(_a, _b, _action);
+            var _result = _calculator.CreateCalculation(_a, _b, _action);
+
+            Assert.AreEqual(_result.GetResults(), 3);
 
         }
         [TestMethod()]
@@ -91,6 +96,7 @@ namespace MyCalculator.Tests
             Func<double, double, double> _action = Operations.Sum;
             Calculator _calculator = new Calculator();
 
+
             _calculator.CreateCalculation(_a, _b, _action);
 
             _action = Operations.Difference;
@@ -103,14 +109,16 @@ namespace MyCalculator.Tests
             _action = Operations.Multiplication;
             _calculator.CreateCalculation(_a, _b, _action);
 
-            /*
 
-            _subtract.calculations.ForEach(action: delegate (Calculations calculations)
+
+            
+
+            _calculator.Calculations.ForEach(action: delegate (Calculations calculations)
             {
                 Console.WriteLine(calculations.GetResults());
                
             });
-            */
+            
         }
         
     }

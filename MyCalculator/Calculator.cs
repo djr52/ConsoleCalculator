@@ -6,13 +6,13 @@ using System.Collections.Generic;
 namespace MyCalculator
 {
 
-    public class Calculator : ICreateCalculation, IAddCalculation
+    public class Calculator : ICreateCalculation
     {
 
-
-        CreateCalculations calculation = new CreateCalculations();
-        AddCalculations addCalculations = new AddCalculations();
+        public List<Calculations> Calculations = new List<Calculations>();
+        CreateCalculations _calculation = new CreateCalculations();
         public Calculator() { }
+
 
         public Calculator(double a, double b, Func<double, double, double> operation)
         {
@@ -20,47 +20,31 @@ namespace MyCalculator
             CreateCalculation(a, b, operation);
 
         }
-        public void CreateCalculation(double a, double b, Func<double, double, double> operation)
+        public Calculations CreateCalculation(double a, double b, Func<double, double, double> operation)
         {
 
-            calculation.CreateCalculation(a, b, operation);
+            var _result = _calculation.CreateCalculation(a, b, operation);
+
+            Calculations.Add(_result);
+
+            return _result;
         }
 
-        public void AddCalculation(Calculations calculations)
-        {
-            addCalculations.AddCalculation(calculations);
-            
-        }
     }    
     interface ICreateCalculation
     {
-        void CreateCalculation(double a, double b, Func<double,double,double>operation);
+        Calculations CreateCalculation(double a, double b, Func<double,double,double>operation);
     }
     public class CreateCalculations : ICreateCalculation
     {
 
-        public void CreateCalculation(double a, double b, Func<double, double, double> operation)
+        public Calculations CreateCalculation(double a, double b, Func<double, double, double> operation)
         {
             var _calculation = new Calculations(a, b, operation);
-            Console.WriteLine(_calculation.GetResults());
-        }
-    }
+            return _calculation;
 
-    interface IAddCalculation
-    {
-        void AddCalculation(Calculations calculations);
-    }
-    public class AddCalculations : IAddCalculation
-    {
-
-        public List<Calculations> Calculations = new List<Calculations>();
-        public void AddCalculation(Calculations calculations)
-        {
-            Calculations.Add(calculations);
 
         }
-
-
     }
 
 
