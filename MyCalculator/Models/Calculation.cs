@@ -9,8 +9,9 @@ namespace ConsoleCalculator.Models
 
 
     //Seperate interfaces into its own folder - Check
-    //Seperate classes into diff files
+    //Seperate classes into diff files - Check
     //Research depen injec and builders
+        //Having a list builder (List interface of sorts?) that "builds" parts of a list, such as adding and returning values may help
 
     public class Calculation : ICalculation
     {
@@ -55,25 +56,6 @@ namespace ConsoleCalculator.Models
 
 
 }
-
-    /*
-    abstract class ModifyList
-    {
-        public List<ICalculations> Calculations = new List<ICalculations>();
-        public abstract void AddCalculation(ICalculations calculations);
-    }
-    class ListModifications : ModifyList
-    {
-        public override void AddCalculation(ICalculations calculations)
-        {
-            Calculations.Add(calculations);
-        }
-        public override void RemoveAllCalculation(ICalculations calculations)
-        {
-            Calculations.RemoveAll();
-
-    }
-    */
 
 
 

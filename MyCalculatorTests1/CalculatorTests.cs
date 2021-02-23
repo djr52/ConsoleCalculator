@@ -33,18 +33,21 @@ namespace MyCalculator.Tests
             double _b = 2;
             Func<double, double, double> _action = Operations.Sum;
             Calculator _calculator = new Calculator();
+            //var _calculatorBuilder = new CalculatorBuilder();
+            
+            //var _result = _calculatorBuilder.CreateCalculation(_a, _b, _action);
+            var _result = _calculator.calculatorBuilder.CreateCalculation(_a, _b, _action);
 
-
-            var _result = _calculator.CreateCalculation(_a, _b, _action);
-
+            Console.WriteLine(_result.GetResult());
             Assert.AreEqual(_result.GetResult(), 3);
 
+            //Console.WriteLine(_calculatorBuilder.GetList()[0].GetResult());
+            //var _result = _calculator.CreateCalculation(_a, _b, _action);
 
-            //var _result = _calculation.calculations[0].GetResults();
-            //Console.WriteLine(_result);
 
 
         }
+        
 
         [TestMethod()]
         public void DifferenceTest()
@@ -54,8 +57,7 @@ namespace MyCalculator.Tests
             Func<double, double, double> _action = Operations.Difference;
             Calculator _calculator = new Calculator();
 
-            var _result = _calculator.CreateCalculation(_a, _b, _action);
-
+            var _result = _calculator.calculatorBuilder.CreateCalculation(_a, _b, _action);
             Assert.AreEqual(_result.GetResult(), 10);
         }
 
@@ -69,8 +71,7 @@ namespace MyCalculator.Tests
 
             Calculator _calculator = new Calculator();
 
-            var _result = _calculator.CreateCalculation(_a, _b, _action);
-
+            var _result = _calculator.calculatorBuilder.CreateCalculation(_a, _b, _action);
             Assert.AreEqual(_result.GetResult(), 75);
         }
         [TestMethod()]
@@ -81,8 +82,7 @@ namespace MyCalculator.Tests
             Func<double, double, double> _action = Operations.Division;
             Calculator _calculator = new Calculator();
 
-            var _result = _calculator.CreateCalculation(_a, _b, _action);
-
+            var _result = _calculator.calculatorBuilder.CreateCalculation(_a, _b, _action);
             Assert.AreEqual(_result.GetResult(), 3);
 
         }
@@ -97,25 +97,26 @@ namespace MyCalculator.Tests
             double _b = 2;
             Func<double, double, double> _action = Operations.Sum;
             Calculator _calculator = new Calculator();
+            var _calculatorBuilder = new CalculatorBuilder();
 
 
-            _calculator.CreateCalculation(_a, _b, _action);
+            _calculatorBuilder.CreateCalculation(_a, _b, _action);
 
             _action = Operations.Difference;
-            _calculator.CreateCalculation(_a, _b, _action);
+            _calculatorBuilder.CreateCalculation(_a, _b, _action);
 
             _action = Operations.Division;
-            _calculator.CreateCalculation(_a, _b, _action);
+            _calculatorBuilder.CreateCalculation(_a, _b, _action);
 
 
             _action = Operations.Multiplication;
-            _calculator.CreateCalculation(_a, _b, _action);
+            _calculatorBuilder.CreateCalculation(_a, _b, _action);
 
 
 
 
 
-            _calculator.Calculations.ForEach(action: delegate (ICalculation calculations)
+            _calculatorBuilder.GetList().ForEach(action: delegate (ICalculation calculations)
             {
                 Console.WriteLine(calculations.GetResult());
 
@@ -131,9 +132,10 @@ namespace MyCalculator.Tests
             Func<List<double>, double> _operations = OperationList.SumList;
 
             Calculator _calculator = new Calculator();
-            _calculator.CreateCalculation(_values, _operations);
-            Assert.AreEqual(21, _calculator.Calculations[0].GetResult());
+            var _result = _calculator.calculatorBuilder.CreateCalculation(_values, _operations);
+            Assert.AreEqual(21, _result.GetResult());
         }
+        
 
     }
 }
