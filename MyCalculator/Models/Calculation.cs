@@ -8,11 +8,6 @@ namespace ConsoleCalculator.Models
 {
 
 
-    //Seperate interfaces into its own folder - Check
-    //Seperate classes into diff files - Check
-    //Research depen injec and builders
-        //Having a list builder (List interface of sorts?) that "builds" parts of a list, such as adding and returning values may help
-
     public class Calculation : ICalculation
     {
         //store 1 value
@@ -34,7 +29,7 @@ namespace ConsoleCalculator.Models
 
         public Calculation() { }
 
-        public static Calculation Create(double a, double b, Func<double, double, double> calculation)
+        public static Calculation Create(double a, double b, Func<double, double, double> calculation) //Static factory Create method creates the object for easy instatiation
         {
             var _calculation = new Calculation(a, b, calculation);
             return _calculation;

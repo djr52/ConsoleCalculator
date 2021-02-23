@@ -13,7 +13,6 @@ namespace MyCalculator.Models
         //store a list of values for bulk operations
         public List<double> ListOfValues { get; set; }
 
-
         public static CalculationList Create(List<double> listOfValues, Func<List<double>, double> operation)
         {
             var _calculation = new CalculationList(listOfValues, operation);

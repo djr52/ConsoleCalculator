@@ -36,7 +36,7 @@ namespace MyCalculator.Tests
             //var _calculatorBuilder = new CalculatorBuilder();
             
             //var _result = _calculatorBuilder.CreateCalculation(_a, _b, _action);
-            var _result = _calculator.calculatorBuilder.CreateCalculation(_a, _b, _action);
+            var _result = _calculator._calculatorBuilder.CreateCalculation(_a, _b, _action);
 
             Console.WriteLine(_result.GetResult());
             Assert.AreEqual(_result.GetResult(), 3);
@@ -57,7 +57,7 @@ namespace MyCalculator.Tests
             Func<double, double, double> _action = Operations.Difference;
             Calculator _calculator = new Calculator();
 
-            var _result = _calculator.calculatorBuilder.CreateCalculation(_a, _b, _action);
+            var _result = _calculator._calculatorBuilder.CreateCalculation(_a, _b, _action);
             Assert.AreEqual(_result.GetResult(), 10);
         }
 
@@ -71,7 +71,7 @@ namespace MyCalculator.Tests
 
             Calculator _calculator = new Calculator();
 
-            var _result = _calculator.calculatorBuilder.CreateCalculation(_a, _b, _action);
+            var _result = _calculator._calculatorBuilder.CreateCalculation(_a, _b, _action);
             Assert.AreEqual(_result.GetResult(), 75);
         }
         [TestMethod()]
@@ -82,7 +82,7 @@ namespace MyCalculator.Tests
             Func<double, double, double> _action = Operations.Division;
             Calculator _calculator = new Calculator();
 
-            var _result = _calculator.calculatorBuilder.CreateCalculation(_a, _b, _action);
+            var _result = _calculator._calculatorBuilder.CreateCalculation(_a, _b, _action);
             Assert.AreEqual(_result.GetResult(), 3);
 
         }
@@ -132,7 +132,7 @@ namespace MyCalculator.Tests
             Func<List<double>, double> _operations = OperationList.SumList;
 
             Calculator _calculator = new Calculator();
-            var _result = _calculator.calculatorBuilder.CreateCalculation(_values, _operations);
+            var _result = _calculator._calculatorBuilder.CreateCalculation(_values, _operations);
             Assert.AreEqual(21, _result.GetResult());
         }
         
