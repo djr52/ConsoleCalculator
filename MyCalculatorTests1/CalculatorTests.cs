@@ -9,6 +9,7 @@ using MyCalculator.Models;
 using MyCalculator.Interfaces;
 
 
+
 namespace MyCalculator.Tests
 {
     [TestClass()]
@@ -32,11 +33,12 @@ namespace MyCalculator.Tests
             double _a = 1;
             double _b = 2;
             Func<double, double, double> _action = Operations.Sum;
-            Calculator _calculator = new Calculator();
+            Calculator _calculator = new Calculator(new CalculatorBuilder());
+            
             //var _calculatorBuilder = new CalculatorBuilder();
             
             //var _result = _calculatorBuilder.CreateCalculation(_a, _b, _action);
-            var _result = _calculator._calculatorBuilder.CreateCalculation(_a, _b, _action);
+            var _result = _calculator.SingleCalculator(_a, _b, _action);
 
             Console.WriteLine(_result.GetResult());
             Assert.AreEqual(_result.GetResult(), 3);
@@ -55,9 +57,9 @@ namespace MyCalculator.Tests
             double _a = 15;
             double _b = 5;
             Func<double, double, double> _action = Operations.Difference;
-            Calculator _calculator = new Calculator();
+            Calculator _calculator = new Calculator(new CalculatorBuilder());
 
-            var _result = _calculator._calculatorBuilder.CreateCalculation(_a, _b, _action);
+            var _result = _calculator.SingleCalculator(_a, _b, _action);
             Assert.AreEqual(_result.GetResult(), 10);
         }
 
@@ -69,9 +71,9 @@ namespace MyCalculator.Tests
             double _b = 5;
             Func<double, double, double> _action = Operations.Multiplication;
 
-            Calculator _calculator = new Calculator();
+            Calculator _calculator = new Calculator(new CalculatorBuilder());
 
-            var _result = _calculator._calculatorBuilder.CreateCalculation(_a, _b, _action);
+            var _result = _calculator.SingleCalculator(_a, _b, _action);
             Assert.AreEqual(_result.GetResult(), 75);
         }
         [TestMethod()]
@@ -80,9 +82,9 @@ namespace MyCalculator.Tests
             double _a = 15;
             double _b = 5;
             Func<double, double, double> _action = Operations.Division;
-            Calculator _calculator = new Calculator();
+            Calculator _calculator = new Calculator(new CalculatorBuilder());
 
-            var _result = _calculator._calculatorBuilder.CreateCalculation(_a, _b, _action);
+            var _result = _calculator.SingleCalculator(_a, _b, _action);
             Assert.AreEqual(_result.GetResult(), 3);
 
         }
@@ -90,27 +92,27 @@ namespace MyCalculator.Tests
         public void CalculationListTest()
         {
 
-
+            
 
 
             double _a = 4;
             double _b = 2;
             Func<double, double, double> _action = Operations.Sum;
-            Calculator _calculator = new Calculator();
+            Calculator _calculator = new Calculator(new CalculatorBuilder());
             var _calculatorBuilder = new CalculatorBuilder();
 
 
-            _calculatorBuilder.CreateCalculation(_a, _b, _action);
+            _calculator.SingleCalculator(_a, _b, _action);
 
             _action = Operations.Difference;
-            _calculatorBuilder.CreateCalculation(_a, _b, _action);
+            _calculator.SingleCalculator(_a, _b, _action);
 
             _action = Operations.Division;
-            _calculatorBuilder.CreateCalculation(_a, _b, _action);
+            _calculator.SingleCalculator(_a, _b, _action);
 
 
             _action = Operations.Multiplication;
-            _calculatorBuilder.CreateCalculation(_a, _b, _action);
+            _calculator.SingleCalculator(_a, _b, _action);
 
 
 
@@ -130,9 +132,9 @@ namespace MyCalculator.Tests
             List<double> _values = new List<double> { 1, 2, 3, 4, 5, 6 };
 
             Func<List<double>, double> _operations = OperationList.SumList;
-
-            Calculator _calculator = new Calculator();
-            var _result = _calculator._calculatorBuilder.CreateCalculation(_values, _operations);
+            
+            Calculator _calculator = new Calculator(new CalculatorBuilder()); //Not setting new CalculatorBuilder() will throw a System.NullReferenceException where the object has not been set to an instance of an object
+            var _result = _calculator.CalculatorList(_values, _operations);
             Assert.AreEqual(21, _result.GetResult());
         }
         

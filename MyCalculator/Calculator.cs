@@ -14,22 +14,31 @@ namespace MyCalculator
     public class Calculator
     {
         public CalculatorBuilder _calculatorBuilder = new CalculatorBuilder();
-
+        private ICalculator _calculator;
         public Calculator() { }
-        public Calculator(List<double> listOfValues, Func<List<double>, double> _operation)
+        public Calculator(ICalculator calculator)
         {
-            _calculatorBuilder.CreateCalculation(listOfValues, _operation);
+            this._calculator = calculator;
             
-            //CreateCalculation(listOfValues, _operation);
+        }
+        public ICalculation CalculatorList(List<double> listOfValues, Func<List<double>, double> _operation) // Split this up and create a calculator list class
+        {
+            return _calculator.CreateCalculation(listOfValues, _operation);
 
         }
-        public Calculator(double a, double b, Func<double, double, double> _operation)
+        public ICalculation SingleCalculator(double a, double b, Func<double, double, double> _operation)
         {
 
-            _calculatorBuilder.CreateCalculation(a, b, _operation);
+            return _calculator.CreateCalculation(a, b, _operation);
 
         }
 
+    
+        public void SetCalculator(ICalculator calculator) //Allows replacing object at runtime
+        {
+            this._calculator = calculator;
+
+        }
 
 
     }

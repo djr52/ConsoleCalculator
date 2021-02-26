@@ -26,7 +26,6 @@ namespace MyCalculator.Models
             _listOfCalculations.AddCalculation(_calculation);
             return _calculation;
         }
-
         public List<ICalculation> GetList()
         {
             var listResult = _listOfCalculations.Calculations;
