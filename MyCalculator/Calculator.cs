@@ -22,12 +22,12 @@ namespace MyCalculator
             this._calculator = calculator;
             
         }
-        public ICalculation CalculatorList(List<double> listOfValues, Func<List<double>, double> _operation) //Change the method name to something more like add calculation
+        public ICalculation AddCalculatorList(List<double> listOfValues, Func<List<double>, double> _operation) //Change the method name to something more like add calculation
         {
             return _calculator.CreateCalculation(listOfValues, _operation);
 
         }
-        public ICalculation SingleCalculator(double a, double b, Func<double, double, double> _operation)
+        public ICalculation CalculateSingle(double a, double b, Func<double, double, double> _operation)
         {
 
             return _calculator.CreateCalculation(a, b, _operation);

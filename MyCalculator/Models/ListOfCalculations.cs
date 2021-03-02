@@ -13,6 +13,14 @@ namespace MyCalculator.Models
         {
             this.Calculations.Add(calculations); 
         }
+        public void GetFirstCalculation()
+        {
+
+        }
+        public void GetLastCalculation()
+        {
+
+        }
     }
 }
 

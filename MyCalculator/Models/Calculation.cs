@@ -17,6 +17,8 @@ namespace ConsoleCalculator.Models
         //store a single operation function
         public Func<double, double, double> Operation { get; set; }
 
+        
+
         //constructor for 3 param (Double, Double, Function)
         public Calculation(double a, double b, Func<double, double, double> calculation)
         {
@@ -31,8 +33,8 @@ namespace ConsoleCalculator.Models
 
         public static Calculation Create(double a, double b, Func<double, double, double> calculation) //Static factory Create method creates the object for easy instatiation
         {
-            var _calculation = new Calculation(a, b, calculation);
-            return _calculation;
+            var _calculation = IAbstractCalcFactory.CreateCalcObject();
+            return _calculation.Create(a, b, calculation);
         }
 
 

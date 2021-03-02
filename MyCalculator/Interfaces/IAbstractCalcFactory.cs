@@ -3,62 +3,28 @@ using System.Collections.Generic;
 using System.Text;
 using MyCalculator.Models;
 using ConsoleCalculator.Models;
+using MyCalculator.Factories;
 
 namespace MyCalculator.Interfaces
 {
-    interface IAbstractCalcFactory
+    public interface IAbstractCalcFactory
     {        
-        IAbstractCalc CreateCalcObject();
-        IAbstractCalcList CreateCalcListObject();
+        static IAbstractCalcObject CreateCalcObject() => new ConcreteCalcObject();
+        static IAbstractCalcListObj CreateCalcListObj() => new ConcreteCalcListObj();
 
     }
-    class ConcreteFactory : IAbstractCalcFactory
-    {
-        public IAbstractCalc CreateCalcObject()
-        {
-            return new ConcreteCalcObject();
-        }
-        public IAbstractCalcList CreateCalcListObject()
-        {
-            return new ConcreteCalcListObject();
-        }
-    }
 
-    public interface IAbstractCalc
+
+    public interface IAbstractCalcObject
     {
         //static Calculation Create() => new Calculation();
         Calculation Create(double a, double b, Func<double, double, double> operation);
 
     }
-    public interface IAbstractCalcList
+    
+    public interface IAbstractCalcListObj
     {
-        CalculationList Create();
+        CalculationList Create(List<double> listOfValues, Func<List<double>, double> operation);
     }
 
-    class ConcreteCalcObject : IAbstractCalc
-    {
-        public static Calculation Create(double a, double b, Func<double, double, double> operation)
-        {
-            return new Calculation(a, b, operation);
-        }
-        Calculation IAbstractCalc.Create(double a, double b, Func<double, double, double> operation)
-        {
-            return ConcreteCalcObject.Create(a, b, operation);
-        }
-        
-
-    }
-    class ConcreteCalcListObject : IAbstractCalcList
-    {
-        public static CalculationList Create()
-        {
-            return new CalculationList();
-        }
-        CalculationList IAbstractCalcList.Create()
-        {
-            return ConcreteCalcListObject.Create();
-        }
-
-
-    }
 }

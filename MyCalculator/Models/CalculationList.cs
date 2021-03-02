@@ -12,11 +12,11 @@ namespace MyCalculator.Models
         public Func<List<double>, double> BulkOperation { get; set; }
         //store a list of values for bulk operations
         public List<double> ListOfValues { get; set; }
-        public CalculationList() { };
+        public CalculationList() { }
         public static CalculationList Create(List<double> listOfValues, Func<List<double>, double> operation)
         {
-            var _calculation = new CalculationList(listOfValues, operation);
-            return _calculation;
+            var _calculation = IAbstractCalcFactory.CreateCalcListObj();
+            return _calculation.Create(listOfValues, operation);
         }
 
 
