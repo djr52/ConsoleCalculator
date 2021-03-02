@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using MyCalculator.Interfaces;
+using System.Linq;
 
 namespace MyCalculator.Models
 {
-    class ListOfCalculations
+    public class ListOfCalculations
     {
         public List<ICalculation> Calculations = new List<ICalculation>();
 
@@ -13,13 +14,16 @@ namespace MyCalculator.Models
         {
             this.Calculations.Add(calculations); 
         }
-        public void GetFirstCalculation()
+        public ICalculation GetFirstCalculation()
         {
-
+            var _firstElement = Calculations.FirstOrDefault();
+            return _firstElement;
+            
         }
-        public void GetLastCalculation()
+        public ICalculation GetLastCalculation()
         {
-
+            var _lastElement = Calculations.LastOrDefault();
+            return _lastElement;
         }
     }
 }

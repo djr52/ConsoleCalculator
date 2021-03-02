@@ -39,7 +39,7 @@ namespace MyCalculator.Tests
             //var _calculatorBuilder = new CalculatorBuilder();
             
             //var _result = _calculatorBuilder.CreateCalculation(_a, _b, _action);
-            var _result = _calculator.CalculateSingle(_a, _b, _action);
+            var _result = _calculator.CreateCalculation(_a, _b, _action);
 
             Console.WriteLine(_result.GetResult());
             Assert.AreEqual(_result.GetResult(), 3);
@@ -60,7 +60,7 @@ namespace MyCalculator.Tests
             Func<double, double, double> _action = Operations.Difference;
             Calculator _calculator = new Calculator(new CalculatorBuilder());
 
-            var _result = _calculator.CalculateSingle(_a, _b, _action);
+            var _result = _calculator.CreateCalculation(_a, _b, _action);
             Assert.AreEqual(_result.GetResult(), 10);
         }
 
@@ -74,7 +74,7 @@ namespace MyCalculator.Tests
 
             Calculator _calculator = new Calculator(new CalculatorBuilder());
 
-            var _result = _calculator.CalculateSingle(_a, _b, _action);
+            var _result = _calculator.CreateCalculation(_a, _b, _action);
             Assert.AreEqual(_result.GetResult(), 75);
         }
         [TestMethod()]
@@ -85,7 +85,8 @@ namespace MyCalculator.Tests
             Func<double, double, double> _action = Operations.Division;
             Calculator _calculator = new Calculator(new CalculatorBuilder());
 
-            var _result = _calculator.CalculateSingle(_a, _b, _action);
+            var _result = _calculator.CreateCalculation(_a, _b, _action);
+
             Assert.AreEqual(_result.GetResult(), 3);
 
         }
@@ -104,17 +105,17 @@ namespace MyCalculator.Tests
             
 
 
-            _calculator.CalculateSingle(_a, _b, _action);
+            _calculator.CreateCalculation(_a, _b, _action);
 
             _action = Operations.Difference;
-            _calculator.CalculateSingle(_a, _b, _action);
+            _calculator.CreateCalculation(_a, _b, _action);
 
             _action = Operations.Division;
-            _calculator.CalculateSingle(_a, _b, _action);
+            _calculator.CreateCalculation(_a, _b, _action);
 
 
             _action = Operations.Multiplication;
-            _calculator.CalculateSingle(_a, _b, _action);
+            _calculator.CreateCalculation(_a, _b, _action);
 
 
 
@@ -136,8 +137,33 @@ namespace MyCalculator.Tests
             Func<List<double>, double> _operations = OperationList.SumList;
             
             Calculator _calculator = new Calculator(new CalculatorBuilder()); //Not setting new CalculatorBuilder() will throw a System.NullReferenceException where the object has not been set to an instance of an object
-            var _result = _calculator.AddCalculatorList(_values, _operations);
+            var _result = _calculator.CreateCalculation(_values, _operations);
             Assert.AreEqual(21, _result.GetResult());
+
+
+
+
+        }
+        [TestMethod()]
+        public void AddValueDecoratorTest()
+        {
+            double _a = 15;
+            double _b = 5;
+            Func<double, double, double> _action = Operations.Division;
+            Calculator _calculator = new Calculator(new CalculatorBuilder());
+
+            var _result = _calculator.CreateCalculation(_a, _b, _action);
+            Func<List<double>, double> _operations = OperationList.SumList;
+            AddValues addValues = new AddValues(_result.GetResult());
+
+            List<double> _newValues = new List<double> { 1, 2, 3, 4, 5, 6 };
+
+            var _newResults = addValues.CreateCalculation(_newValues, _operations);
+
+            Assert.AreEqual(_result.GetResult(), 3);
+
+            Console.WriteLine(_newResults.GetResult());
+
         }
         
 

@@ -6,6 +6,6 @@ namespace MyCalculator.Interfaces
 {
     public interface ICalculatorList
     {
-        public ICalculation CreateCalculation(List<double> listOfValues, Func<List<double>, double> operation);
+        //public ICalculation CreateCalculation(List<double> listOfValues, Func<List<double>, double> operation);
     }
 }

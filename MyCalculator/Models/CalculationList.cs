@@ -26,7 +26,6 @@ namespace MyCalculator.Models
         {
             ListOfValues = listOfValues;
 
-            //this stores the operation to be performed on A and B
             BulkOperation = calculation;
         }
         public double GetResult()
