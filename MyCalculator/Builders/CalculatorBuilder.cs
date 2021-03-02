@@ -5,7 +5,7 @@ using MyCalculator.Interfaces;
 using MyCalculator.Models;
 using ConsoleCalculator.Models;
 
-namespace MyCalculator.Models
+namespace MyCalculator.Builders
 {
     public class CalculatorBuilder : ICalculator
     {
