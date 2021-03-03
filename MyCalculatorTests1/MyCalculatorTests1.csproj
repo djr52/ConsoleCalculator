@@ -1,11 +1,9 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
 
     <IsPackable>false</IsPackable>
-
-    <OutputType>Exe</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,11 +15,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MyCalculator\MyCalculator.csproj" />
-    <Compile Include="..\MyCalculator\CalculatorFunctions\Operations.cs" />
-   <!-- <Compile Include="..\MyCalculator\Models\Calculations.cs"/> 
-    <Compile Include="..\MyCalculator\Calculator.cs"/>-->
-
-	<ProjectReference Include="C:\Users\juanf\source\repos\ConsoleCalculator\ConsoleCalculator\ConsoleCalculator.csproj" />
+	  <Compile Include="C:\Users\juanf\source\repos\ConsoleCalculator\MyCalculator\CalculatorFunctions\Operations.cs"/>
+	  <Compile Include="C:\Users\juanf\source\repos\ConsoleCalculator\MyCalculator\CalculatorFunctions\OperationList.cs"/>
+	  <Compile Include="C:\Users\juanf\source\repos\ConsoleCalculator\MyCalculator\Interfaces\ICalculator.cs"/>
 
 
   </ItemGroup>

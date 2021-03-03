@@ -1,67 +1,53 @@
 ﻿using System;
 using ConsoleCalculator.Models;
 using MyCalculator.CalculatorFunctions;
+using MyCalculator.Models;
 using System.Collections.Generic;
+using MyCalculator.Interfaces;
+using MyCalculator.Builders;
 
 namespace MyCalculator
 {
 
 
-    public abstract class Calculator
+
+    public class Calculator
     {
+        public CalculatorBuilder _calculatorBuilder = new CalculatorBuilder();
 
-
-        public List<Calculations> calculations = new List<Calculations>();
+        private ICalculator _calculator;
         public Calculator() { }
+        public Calculator(ICalculator calculator)
+        {
+            this._calculator = calculator;
+            
+            
+        }
+        public ICalculation CreateCalculation(List<double> listOfValues, Func<List<double>, double> _operation) //Change the method name to something more like add calculation
+        {
+            return _calculator.CreateCalculation(listOfValues, _operation);
 
-        public Calculator(double a, double b, string operationType)
+        }
+        public ICalculation CreateCalculation(double a, double b, Func<double, double, double> _operation)
         {
 
-            CreateCalculation(a, b, operationType);
+            return _calculator.CreateCalculation(a, b, _operation);
 
         }
-        public abstract void CreateCalculation(double a, double b, string operationType);
 
-        public void AddCalculation(double a, double b, Func<double, double, double> operation)
+        public void SetCalculator(ICalculator calculator) //Allows replacing object at runtime
         {
-            var _calculation = new Calculations(a, b, operation);
-            calculations.Add(_calculation);
+            this._calculator = calculator;
+
         }
+
+
     }
-    public class Sum: Calculator
-    {
-        public override void CreateCalculation(double a, double b, string operationType)
-        {
-            Func<double, double, double> _operation;
-            _operation = Operations.Sum;
-            AddCalculation(a, b, _operation);
-        }
-    }
-    public class Difference : Calculator
-    {
-        public override void CreateCalculation(double a, double b, string operationType)
-        {
-            Func<double, double, double> _operation;
-            _operation = Operations.Difference;
-            AddCalculation(a, b, _operation);
-        }
-    }
-    public class Multiplication : Calculator
-    {
-        public override void CreateCalculation(double a, double b, string operationType)
-        {
-            Func<double, double, double> _operation;
-            _operation = Operations.Multiplication;
-            AddCalculation(a, b, _operation);
-        }
-    }
-    public class Division : Calculator
-    {
-        public override void CreateCalculation(double a, double b, string operationType)
-        {
-            Func<double, double, double> _operation;
-            _operation = Operations.Division;
-            AddCalculation(a, b, _operation);
-        }
-    }
+
 }
+
+
+
+
+
+
