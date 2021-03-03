@@ -35,8 +35,6 @@ namespace MyCalculator
 
         }
 
-
-
         public void SetCalculator(ICalculator calculator) //Allows replacing object at runtime
         {
             this._calculator = calculator;

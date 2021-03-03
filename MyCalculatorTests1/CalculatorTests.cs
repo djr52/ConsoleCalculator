@@ -151,17 +151,18 @@ namespace MyCalculator.Tests
             double _b = 5;
             Func<double, double, double> _action = Operations.Division;
             Calculator _calculator = new Calculator(new CalculatorBuilder());
-
             var _result = _calculator.CreateCalculation(_a, _b, _action);
-            Func<List<double>, double> _operations = OperationList.SumList;
-            AddValues addValues = new AddValues(_result.GetResult());
 
+
+            Func<List<double>, double> _operations = OperationList.SumList;
+            AddValues _addValues = new AddValues(_result.GetResult());
             List<double> _newValues = new List<double> { 1, 2, 3, 4, 5, 6 };
 
-            var _newResults = addValues.CreateCalculation(_newValues, _operations);
+            var _newResults = _addValues.CreateNewCalculation(_newValues, _operations);
+
 
             Assert.AreEqual(_result.GetResult(), 3);
-
+            Assert.AreEqual(_newResults.GetResult(), 24);
             Console.WriteLine(_newResults.GetResult());
 
         }
