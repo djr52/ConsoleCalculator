@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MyCalculator.CalculatorFunctions
 {
-    class Operations
+    public class Operations
     {
         public static Func<double, double, double> Sum = (a, b) => a + b;
         public static Func<double, double, double> Difference = (a, b) => a - b;

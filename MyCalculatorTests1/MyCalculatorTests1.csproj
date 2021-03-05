@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MyCalculator\MyCalculator.csproj" />
-	  <Compile Include="C:\Users\juanf\source\repos\ConsoleCalculator\MyCalculator\CalculatorFunctions\Operations.cs"/>
+	 <!-- <Compile Include="C:\Users\juanf\source\repos\ConsoleCalculator\MyCalculator\CalculatorFunctions\Operations.cs"/>-->
 	  <Compile Include="C:\Users\juanf\source\repos\ConsoleCalculator\MyCalculator\CalculatorFunctions\OperationList.cs"/>
 	  <Compile Include="C:\Users\juanf\source\repos\ConsoleCalculator\MyCalculator\Interfaces\ICalculator.cs"/>
 

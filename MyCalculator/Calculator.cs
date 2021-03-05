@@ -11,7 +11,7 @@ namespace MyCalculator
 
 
 
-    public class Calculator
+    public class Calculator : EventArgs 
     {
         public CalculatorBuilder _calculatorBuilder = new CalculatorBuilder();
 
