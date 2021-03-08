@@ -20,7 +20,6 @@ namespace MyCalculator.Models
         }
 
 
-
         //constructor for 2 param (list, and function)
         public CalculationList(List<double> listOfValues, Func<List<double>, double> calculation)
         {

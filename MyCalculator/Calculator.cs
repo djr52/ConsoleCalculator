@@ -11,11 +11,12 @@ namespace MyCalculator
 
 
 
-    public class Calculator : EventArgs 
+    public class Calculator
     {
         public CalculatorBuilder _calculatorBuilder = new CalculatorBuilder();
 
         private ICalculator _calculator;
+
         public Calculator() { }
         public Calculator(ICalculator calculator)
         {
@@ -25,12 +26,12 @@ namespace MyCalculator
         }
         public ICalculation CreateCalculation(List<double> listOfValues, Func<List<double>, double> _operation) //Change the method name to something more like add calculation
         {
+            //OnCalculation();
             return _calculator.CreateCalculation(listOfValues, _operation);
-
         }
         public ICalculation CreateCalculation(double a, double b, Func<double, double, double> _operation)
         {
-
+            //OnCalculation();
             return _calculator.CreateCalculation(a, b, _operation);
 
         }
@@ -40,7 +41,6 @@ namespace MyCalculator
             this._calculator = calculator;
 
         }
-
 
     }
 
