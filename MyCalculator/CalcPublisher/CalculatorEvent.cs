@@ -11,7 +11,7 @@ namespace MyCalculator.EventPublisher
     {
 
 
-        public event EventHandler<CalcEventArgs> CalculationCompleted; //To pass in custom event data, such as the calculator object, please create a calculator event arg class that extends EventArgs
+        public event EventHandler<CalcEventArgs> CalculationCompleted;
         public void GrabCalculation(ICalculation calculation)
         {
             
@@ -19,6 +19,7 @@ namespace MyCalculator.EventPublisher
         }
         protected virtual void OnCalculation(ICalculation calculation)
         {
+
             CalculationCompleted.Invoke(this, new CalcEventArgs() { Calculation = calculation });
         }
     }

@@ -10,35 +10,21 @@ namespace ConsoleCalculator
 
         static void Main(string[] args)
         {
-            var builtCalculator = new CalculatorBuilder();
-            Calculator _calculator = new Calculator(builtCalculator);
+            ConsoleManager console = new ConsoleManager();
+            console.Start();
 
+            //var calcEvent = new CalculatorEvent(); //Publisher from  calculator
+            //Setup publisher and subscriber seperate from the Main program, integrate with actual methods
+            //var displayCalc = new DisplayCalculation(); //Have subscriber be moved to the calculator class
 
-            var calcEvent = new CalculatorEvent();
-            var displayCalc = new DisplayCalculation();
+            Func<double, double, double> _action = console.UserInputAction();
+            double _firstInput = console.UserInputDouble();
+            double _secondInput = console.UserInputDouble();
 
+            console.PerformCalculation(_firstInput, _secondInput, _action);
 
-
-
-            Console.WriteLine("Please enter two numbers for a sum result. ");
-            Func<double, double, double> _action = Operations.Sum;
-
-            double _firstInput = UserInputDouble();
-            double _secondInput = UserInputDouble();
-
-            var _result = _calculator.CreateCalculation(_firstInput, _secondInput, _action);
             
-            calcEvent.CalculationCompleted += displayCalc.OnCalculation;
-            calcEvent.GrabCalculation(_result);
-
         }
-        static double UserInputDouble()
-        {
-            Console.WriteLine("Hello! Please enter a number: ");
-            double userInput = Convert.ToDouble(Console.ReadLine());
-            return userInput;
-        }
-
 
     }
 

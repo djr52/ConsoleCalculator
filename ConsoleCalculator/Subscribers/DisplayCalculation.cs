@@ -4,9 +4,11 @@ namespace ConsoleCalculator
 {
     public class DisplayCalculation
     {
-        public void OnCalculation(object sender, CalcEventArgs args)
+        //public CalculatorEvent _calcEvent = new CalculatorEvent();
+   
+        public void OnCalculation(object sender, CalcEventArgs calcEvent)
         {
-            Console.WriteLine("Calculation Complete. Result is: " + args.Calculation.GetResult());
+            Console.WriteLine("Calculation Complete. Result is: " + calcEvent.Calculation.GetResult());
         }
     }
 

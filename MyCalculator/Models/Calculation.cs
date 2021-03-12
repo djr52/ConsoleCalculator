@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using MyCalculator.CalculatorFunctions;
 using MyCalculator.Interfaces;
+using MyCalculator.EventPublisher;
 
 namespace ConsoleCalculator.Models
 {
@@ -28,12 +29,14 @@ namespace ConsoleCalculator.Models
             Operation = calculation;
         }
         //constructor with 0 param
+        public static CalculatorEvent _calcEvent = new CalculatorEvent();
 
         public Calculation() { }
 
         public static Calculation Create(double a, double b, Func<double, double, double> calculation) //Static factory Create method creates the object for easy instatiation
         {
             var _calculation = IAbstractCalcFactory.CreateCalcObject();
+            //_calcEvent.GrabCalculation(_calculation.Create(a, b, calculation));
             return _calculation.Create(a, b, calculation);
         }
 
