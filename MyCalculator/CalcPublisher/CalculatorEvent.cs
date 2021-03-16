@@ -14,13 +14,14 @@ namespace MyCalculator.EventPublisher
         public event EventHandler<CalcEventArgs> CalculationCompleted;
         public void GrabCalculation(ICalculation calculation)
         {
-            
+            Console.WriteLine("Grabbing Calculation...");
             OnCalculation(calculation);
         }
         protected virtual void OnCalculation(ICalculation calculation)
         {
 
-            CalculationCompleted.Invoke(this, new CalcEventArgs() { Calculation = calculation });
+            if(CalculationCompleted != null)
+                CalculationCompleted.Invoke(this, new CalcEventArgs() { Calculation = calculation });
         }
     }
 }

@@ -7,6 +7,7 @@ using MyCalculator.Interfaces;
 using MyCalculator.Builders;
 using MyCalculator.EventPublisher;
 
+
 namespace MyCalculator
 {
 
@@ -18,7 +19,7 @@ namespace MyCalculator
         public CalculatorEvent _calcEvent = new CalculatorEvent();
 
         private ICalculator _calculator;
-
+        //public CalculatorManager calculatorManager = new CalculatorManager();
         
 
         public Calculator() { }
@@ -44,7 +45,7 @@ namespace MyCalculator
         public void SetCalculator(ICalculator calculator) //Allows replacing object at runtime
         {
             this._calculator = calculator;
-
+            
         }
 
     }

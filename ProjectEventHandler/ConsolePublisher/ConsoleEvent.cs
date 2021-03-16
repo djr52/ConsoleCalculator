@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ConsoleCalculator.ConsolePublisher
+namespace ProjectEventHandler.ConsolePublisher
 {
     public class ConsoleEvent
     {

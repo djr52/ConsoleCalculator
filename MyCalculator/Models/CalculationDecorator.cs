@@ -34,7 +34,6 @@ namespace MyCalculator.Models
     }
     public class AddValues : CalculationDecorator
     {
-        //private ICalculator _calculator;
 
         public AddValues(double calculationResult) : base(calculationResult)
         {

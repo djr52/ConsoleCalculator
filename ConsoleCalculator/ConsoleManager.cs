@@ -1,24 +1,27 @@
 ﻿using System;
-using ConsoleCalculator.ConsolePublisher;
 using MyCalculator.CalculatorFunctions;
 using MyCalculator.Builders;
 using MyCalculator;
-
+using ProjectEventHandler.ConsolePublisher;
+using ConsoleCalculator.Subscribers;
+using ProjectEventHandler;
 namespace ConsoleCalculator
 {
     public class ConsoleManager
     {
         Calculator _calculator = new Calculator(new CalculatorBuilder());
         public ConsoleEvent _consoleEvent = new ConsoleEvent();
+        //public StoreUserInput storeUserInput = new StoreUserInput();
+        ConsoleEventManager _consoleEventMan = new ConsoleEventManager();
         public void Start()
         {
             Console.WriteLine("Welcome to the Console Calculator. Please enter which operation you wish to perform: ");
         }
         public void PerformCalculation(double firstInput, double secondInput, Func<double, double, double> action)
         {
-
             DisplayCalculation();
             var _result = _calculator.CreateCalculation(firstInput, secondInput, action);
+           
 
 
         }
@@ -28,15 +31,16 @@ namespace ConsoleCalculator
             _calculator._calcEvent.CalculationCompleted += displayCalc.OnCalculation;
 
         }
-        public double UserInputDouble()
+        void StoreUserInput()
         {
-            Console.WriteLine("Please enter a number: ");
-            double userInput = Convert.ToDouble(Console.ReadLine());
-
-           // _consoleEvent.GrabUserInputDouble(userInput);
-
-            return userInput;
+            _consoleEventMan._consoleEvent.UserInput += _consoleEventMan.storeUserInput.OnUserInput;
+            //_consoleEvent.UserInput += storeUserInput.OnUserInput;
         }
+        public void DisplayUserInputs()
+        {
+            _consoleEventMan.storeUserInput.DisplayInputs();
+        }
+
         public Func<double, double, double> UserInputAction()
         {
             Console.WriteLine("Options: ('add', 'sub', 'div', 'mul')");

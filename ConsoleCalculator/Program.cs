@@ -1,30 +1,28 @@
 ﻿using System;
-using MyCalculator;
-using MyCalculator.Builders;
-using MyCalculator.CalculatorFunctions;
-using MyCalculator.EventPublisher;
+//using MyCalculator.EventPublisher;
+using ProjectEventHandler;
 namespace ConsoleCalculator
 {
-    class Program
+    public class Program
     {
 
         static void Main(string[] args)
         {
             ConsoleManager console = new ConsoleManager();
+            ConsoleEventManager consoleEvent = new ConsoleEventManager();
             console.Start();
 
-            //var calcEvent = new CalculatorEvent(); //Publisher from  calculator
-            //Setup publisher and subscriber seperate from the Main program, integrate with actual methods
-            //var displayCalc = new DisplayCalculation(); //Have subscriber be moved to the calculator class
-
             Func<double, double, double> _action = console.UserInputAction();
-            double _firstInput = console.UserInputDouble();
-            double _secondInput = console.UserInputDouble();
+            double _firstInput = consoleEvent.UserInputDouble();
+        
+            double _secondInput = consoleEvent.UserInputDouble();
 
             console.PerformCalculation(_firstInput, _secondInput, _action);
 
-            
+            consoleEvent.DisplayUserInputs();
+
         }
+
 
     }
 
