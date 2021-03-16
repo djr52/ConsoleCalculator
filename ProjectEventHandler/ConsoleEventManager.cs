@@ -2,30 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-using ProjectEventHandler.ConsolePublisher;
-namespace ProjectEventHandler
+using ConsoleEventHandler.ConsolePublisher;
+namespace ConsoleEventHandler
 {
-    /*
-    public interface IEventHandler
-    {
-        EventArgs GetEventData();
-        
-    }
-    class ConsoleEventManager
-    {
-        Program main = new Program();
-        
-    }
-    */
+
     public class ConsoleEventManager
     {
         public ConsoleEvent _consoleEvent = new ConsoleEvent();
         public StoreUserInput storeUserInput = new StoreUserInput();
-        public void Start()
-        {
-            Console.WriteLine("Welcome to the Console Calculator. Please enter which operation you wish to perform: ");
-        }
-
 
         void StoreUserInput()
         {

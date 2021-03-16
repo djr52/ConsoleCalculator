@@ -6,6 +6,9 @@ using System.Linq;
 
 namespace ConsoleCalculator.Subscribers
 {
+
+    //These files are not being used. 
+    //Instead the "duplicate" files found in the ConsoleEventHandler Folder are being used instead
     class StoreUserInput
     {
         List<double> userInputs = new List<double>();

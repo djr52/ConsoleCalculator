@@ -2,9 +2,9 @@
 using MyCalculator.CalculatorFunctions;
 using MyCalculator.Builders;
 using MyCalculator;
-using ProjectEventHandler.ConsolePublisher;
+using ConsoleEventHandler.ConsolePublisher;
 using ConsoleCalculator.Subscribers;
-using ProjectEventHandler;
+using ConsoleEventHandler;
 namespace ConsoleCalculator
 {
     public class ConsoleManager

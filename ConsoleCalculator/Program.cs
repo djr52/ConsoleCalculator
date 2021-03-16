@@ -1,6 +1,6 @@
 ﻿using System;
 //using MyCalculator.EventPublisher;
-using ProjectEventHandler;
+using ConsoleEventHandler;
 namespace ConsoleCalculator
 {
     public class Program

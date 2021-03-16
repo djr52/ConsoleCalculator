@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using ProjectEventHandler.ConsolePublisher;
+using ConsoleEventHandler.ConsolePublisher;
 using System.Linq;
 
-namespace ProjectEventHandler
+namespace ConsoleEventHandler
 {
     public class StoreUserInput
     {
