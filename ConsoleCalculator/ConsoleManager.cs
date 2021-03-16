@@ -10,8 +10,6 @@ namespace ConsoleCalculator
     public class ConsoleManager
     {
         Calculator _calculator = new Calculator(new CalculatorBuilder());
-        public ConsoleEvent _consoleEvent = new ConsoleEvent();
-        //public StoreUserInput storeUserInput = new StoreUserInput();
         ConsoleEventManager _consoleEventMan = new ConsoleEventManager();
         public void Start()
         {
