@@ -1,4 +1,7 @@
 ﻿using System;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Console;
 using ConsoleEventHandler;
 namespace ConsoleCalculator
 {
@@ -8,18 +11,20 @@ namespace ConsoleCalculator
         static void Main(string[] args)
         {
             ConsoleManager console = new ConsoleManager();
-            ConsoleEventManager consoleEvent = new ConsoleEventManager();
+            var _serviceCollection = new ServiceCollection();
+            ConfigureServices(_serviceCollection);
+
+            var _serviceProvider = _serviceCollection.BuildServiceProvider();
+            var _consoleEManager = _serviceProvider.GetService<ConsoleEventManager>();
+           
             console.Start();
 
-            Func<double, double, double> _action = consoleEvent.UserInputAction();
-            double _firstInput = consoleEvent.UserInputDouble();
-        
-            double _secondInput = consoleEvent.UserInputDouble();
+        }
 
-            console.PerformCalculation(_firstInput, _secondInput, _action);
-
-            consoleEvent.DisplayUserInputs();
-
+        private static void ConfigureServices(IServiceCollection services)
+        {
+            services.AddLogging(configure => configure.AddConsole())
+                .AddTransient<ConsoleEventManager>();
         }
 
 

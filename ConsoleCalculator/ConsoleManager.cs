@@ -11,11 +11,40 @@ namespace ConsoleCalculator
     public class ConsoleManager
     {
         Calculator _calculator = new Calculator(new CalculatorBuilder());
-        ConsoleEventManager _consoleEventMan = new ConsoleEventManager();
+        ConsoleEventManager _consoleEvent = new ConsoleEventManager();
         public void Start()
         {
             Console.WriteLine("Welcome to the Console Calculator. Please enter which operation you wish to perform: ");
-            Console.WriteLine("Options: ('add', 'sub', 'div', 'mul')");
+            
+            while (true)
+            {
+                Console.WriteLine("Options: ('add', 'sub', 'mul', 'div')");
+                var _action = _consoleEvent.UserInputAction();
+                double _firstInput = _consoleEvent.UserInputDouble();
+
+                double _secondInput = _consoleEvent.UserInputDouble();
+
+                PerformCalculation(_firstInput, _secondInput, _action);
+
+                _consoleEvent.DisplayUserInputs();
+
+                FinalDecision();
+
+
+            }
+        }
+        bool FinalDecision()
+
+        {
+            Console.WriteLine("Finished? 'Yes' or 'No'?");
+            string _decision = Console.ReadLine();
+            _decision.ToLower();
+            if (_decision == "yes")
+            {
+                return false;
+            }
+            return true;
+
         }
         public void PerformCalculation(double firstInput, double secondInput, Func<double, double, double> action)
         {
@@ -33,12 +62,12 @@ namespace ConsoleCalculator
         }
         void StoreUserInput()
         {
-            _consoleEventMan._consoleEvent.UserInput += _consoleEventMan.storeUserInput.OnUserInput;
+            _consoleEvent._consoleEvent.UserInput += _consoleEvent.storeUserInput.OnUserInput;
             //_consoleEvent.UserInput += storeUserInput.OnUserInput;
         }
         public void DisplayUserInputs()
         {
-            _consoleEventMan.storeUserInput.DisplayInputs();
+            _consoleEvent.storeUserInput.DisplayInputs();
         }
 
 

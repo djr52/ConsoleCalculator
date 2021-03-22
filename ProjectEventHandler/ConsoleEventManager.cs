@@ -4,15 +4,34 @@ using System.Text;
 using MyCalculator.CalculatorFunctions;
 using ConsoleEventHandler.Factories;
 using ConsoleEventHandler.Interface;
-
 using ConsoleEventHandler.ConsolePublisher;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
+
+
+
 namespace ConsoleEventHandler
 {
 
     public class ConsoleEventManager
     {
+        private readonly ILogger _logger;
         public ConsoleEvent _consoleEvent = new ConsoleEvent();
         public StoreUserInput storeUserInput = new StoreUserInput();
+
+        public ConsoleEventManager() { }
+
+        ConsoleEventManager(ILogger<ConsoleEventManager> logger)
+        {
+            this._logger = logger;
+        }
+
+        public void DivideByZeroError()
+        {
+            Console.WriteLine("Error");
+            _logger.LogInformation("Can't divide by zero, skipping calculation");
+        }
+
         void StoreUserInput()
         {
 
