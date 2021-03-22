@@ -1,5 +1,4 @@
 ﻿using System;
-//using MyCalculator.EventPublisher;
 using ConsoleEventHandler;
 namespace ConsoleCalculator
 {
@@ -12,7 +11,7 @@ namespace ConsoleCalculator
             ConsoleEventManager consoleEvent = new ConsoleEventManager();
             console.Start();
 
-            Func<double, double, double> _action = console.UserInputAction();
+            Func<double, double, double> _action = consoleEvent.UserInputAction();
             double _firstInput = consoleEvent.UserInputDouble();
         
             double _secondInput = consoleEvent.UserInputDouble();

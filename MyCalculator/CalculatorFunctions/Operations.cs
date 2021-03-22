@@ -10,8 +10,9 @@ namespace MyCalculator.CalculatorFunctions
         public static Func<double, double, double> Difference = (a, b) => a - b;
         public static Func<double, double, double> Multiplication = (a, b) => a * b;
         public static Func<double, double, double> Division = (a, b) => a / b;
+        public static Func<double, double, double> PowerOf = (a, b) => Math.Pow(a, b);
         public static Func<double, double, double> Unassigned = (a, b) => 0;
-
+        
 
 
     }

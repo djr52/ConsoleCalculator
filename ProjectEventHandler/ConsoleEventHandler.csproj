@@ -3,11 +3,9 @@
 	<PropertyGroup>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
 	</PropertyGroup>
-
 	<ItemGroup>
-		<!--
-		<ProjectReference Include="C:\Users\juanf\source\repos\ConsoleCalculator\ProjectEventHandler\ProjectEventHandler.csproj" />-->
-
+		<ProjectReference Include="C:\Users\juanf\source\repos\ConsoleCalculator\MyCalculator\MyCalculator.csproj" />
 	</ItemGroup>
+
 
 </Project>

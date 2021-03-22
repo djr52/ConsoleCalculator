@@ -13,6 +13,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCalculatorTests1", "MyCalculatorTests1\MyCalculatorTests1.csproj", "{5C5DBD46-79DE-42A1-B2C5-9C6518123A68}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleEventHandler", "ProjectEventHandler\ConsoleEventHandler.csproj", "{A50FABA6-B1BA-48ED-8497-7C0DC0B7774C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DC5E885A-66B5-4EA7-BD05-E36DD82992BE} = {DC5E885A-66B5-4EA7-BD05-E36DD82992BE}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
