@@ -12,12 +12,10 @@ namespace ConsoleEventHandler
         public void OnUserInput(object sender, ConsoleEventArgs consoleEvent)
         {
             userInputs.Add(consoleEvent.UserNumberInput);
-            Console.WriteLine("First input: " + userInputs[0]);
 
         }
         public void DisplayInputs()
         {
-            userInputs.Remove(userInputs.Last());
             foreach(double numbers in userInputs)
             {
                 Console.WriteLine(numbers + " ");

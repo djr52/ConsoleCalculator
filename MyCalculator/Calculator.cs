@@ -27,6 +27,7 @@ namespace MyCalculator
         {
             this._calculator = calculator;
             
+            //_calcEvent.UseCalculator(_calculatorBuilder);
             
         }
         public ICalculation CreateCalculation(List<double> listOfValues, Func<List<double>, double> _operation) //Change the method name to something more like add calculation
@@ -47,6 +48,7 @@ namespace MyCalculator
             this._calculator = calculator;
             
         }
+
 
     }
 

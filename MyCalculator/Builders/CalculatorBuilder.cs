@@ -4,12 +4,15 @@ using System.Text;
 using MyCalculator.Interfaces;
 using MyCalculator.Models;
 using ConsoleCalculator.Models;
+using MyCalculator.EventPublisher;
 
 namespace MyCalculator.Builders
 {
     public class CalculatorBuilder : ICalculator
     {
         private ListOfCalculations _listOfCalculations = new ListOfCalculations();
+        public CalculatorEvent _calcEvent = new CalculatorEvent();
+        CalculatorBuilder calculatorBuilder;
 
 
         public ICalculation CreateCalculation(double a, double b, Func<double, double, double> _operation)
@@ -29,6 +32,7 @@ namespace MyCalculator.Builders
         public List<ICalculation> GetList()
         {
             var listResult = _listOfCalculations.Calculations;
+            _calcEvent.UseCalculator(calculatorBuilder);
             return listResult;
         }
     }

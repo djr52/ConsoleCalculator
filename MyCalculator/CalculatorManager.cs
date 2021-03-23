@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using MyCalculator.CalcSubscribers;
-//using ConsoleCalculator;
-//using ConsoleCalculator.ConsolePublisher;
-using ConsoleCalculator;
+//using MyCalculator.CalcSubscribers;
+
 namespace MyCalculator
 {
     
@@ -19,6 +17,10 @@ namespace MyCalculator
             _consoleManager._consoleEvent.UserInput += storeInput.OnUserInput;
         }
         */
+        public void StoreCalculations()
+        {
+
+        }
     }
     
 }

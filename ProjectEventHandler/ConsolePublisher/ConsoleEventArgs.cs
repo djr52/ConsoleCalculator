@@ -8,6 +8,7 @@ namespace ConsoleEventHandler.ConsolePublisher
     {
         public double UserNumberInput { get; set; }
         public Func<double,double,double> UserActionInput { get; set; }
+        public string UserCommandInput { get; set; }
 
     }
 }

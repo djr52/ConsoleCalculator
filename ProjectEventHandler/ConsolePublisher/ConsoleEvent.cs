@@ -7,6 +7,17 @@ namespace ConsoleEventHandler.ConsolePublisher
     public class ConsoleEvent
     {
         public event EventHandler<ConsoleEventArgs> UserInput;
+
+        public void GrabUserCommandInput(string userInput)
+        {
+            OnUserInput(userInput);
+        }
+        protected virtual void OnUserInput(string userInput)
+        {
+            if (UserInput != null)
+                UserInput(this, new ConsoleEventArgs() { UserCommandInput = userInput });
+        }
+
         public void GrabUserInputDouble(double userInput)
         {
             Console.WriteLine("Grabbing User Input");
@@ -27,7 +38,8 @@ namespace ConsoleEventHandler.ConsolePublisher
         protected virtual void OnUserInput(Func<double, double, double> userInput)
         {
 
-            UserInput.Invoke(this, new ConsoleEventArgs() { UserActionInput = userInput });
+            if (UserInput != null)
+                UserInput(this, new ConsoleEventArgs() { UserActionInput = userInput });
         }
 
     }

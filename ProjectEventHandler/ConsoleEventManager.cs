@@ -15,27 +15,21 @@ namespace ConsoleEventHandler
 
     public class ConsoleEventManager
     {
-        private readonly ILogger _logger;
         public ConsoleEvent _consoleEvent = new ConsoleEvent();
         public StoreUserInput storeUserInput = new StoreUserInput();
 
         public ConsoleEventManager() { }
 
-        ConsoleEventManager(ILogger<ConsoleEventManager> logger)
-        {
-            this._logger = logger;
-        }
 
-        public void DivideByZeroError()
-        {
-            Console.WriteLine("Error");
-            _logger.LogInformation("Can't divide by zero, skipping calculation");
-        }
-
-        void StoreUserInput()
+        public void RegisterStoreUserInputEvent()
         {
 
             _consoleEvent.UserInput += storeUserInput.OnUserInput;
+        }
+        public void UnregisterStoreUserInputEvent()
+        {
+
+            _consoleEvent.UserInput -= storeUserInput.OnUserInput;
         }
         public void DisplayUserInputs()
         {
@@ -43,7 +37,7 @@ namespace ConsoleEventHandler
         }
         public double UserInputDouble()
         {
-            StoreUserInput();
+            RegisterStoreUserInputEvent();
             Console.WriteLine("Please enter a number: ");
             double userInput = Convert.ToDouble(Console.ReadLine());
 

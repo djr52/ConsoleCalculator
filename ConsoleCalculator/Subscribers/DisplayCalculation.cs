@@ -7,7 +7,8 @@ namespace ConsoleCalculator
     {   
         public void OnCalculation(object sender, CalcEventArgs calcEvent)
         {
-            Console.WriteLine("Calculation Complete. Result is: " + calcEvent.Calculation.GetResult());
+             Console.WriteLine("Calculation Complete. Result is: " + calcEvent.Calculation.GetResult());
+            
         }
     }
 

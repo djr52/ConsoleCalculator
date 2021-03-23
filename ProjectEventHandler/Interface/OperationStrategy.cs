@@ -42,6 +42,22 @@ namespace ConsoleEventHandler.Interface
 
         }
     }
+    class OperationPower : OperationStrategy
+    {
+        public Func<double, double, double> getOperation()
+        {
+            return Operations.PowerOf;
+
+        }
+    }
+    class DefaultOperation : OperationStrategy
+    {
+        public Func<double, double, double> getOperation()
+        {
+            return Operations.Unassigned;
+
+        }
+    }
 
 
 }

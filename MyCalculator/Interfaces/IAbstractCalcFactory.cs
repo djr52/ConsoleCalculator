@@ -17,7 +17,6 @@ namespace MyCalculator.Interfaces
 
     public interface IAbstractCalcObject
     {
-        //static Calculation Create() => new Calculation();
         Calculation Create(double a, double b, Func<double, double, double> operation);
 
     }
