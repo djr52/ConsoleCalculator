@@ -5,44 +5,56 @@ using MyCalculator.CalculatorFunctions;
 using ConsoleEventHandler.Factories;
 using ConsoleEventHandler.Interface;
 using ConsoleEventHandler.ConsolePublisher;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.DependencyInjection;
-
+using ConsoleEventHandler.Observers;
+using ConsoleEventHandler.RegisterEvents;
+//using Microsoft.Extensions.Logging;
+//using Microsoft.Extensions.DependencyInjection;
 
 
 namespace ConsoleEventHandler
 {
 
-    public class ConsoleEventManager
+    public class ConsoleEventManager : IConsoleSubject
     {
-        public ConsoleEvent _consoleEvent = new ConsoleEvent();
-        public StoreUserInput storeUserInput = new StoreUserInput();
+        public EventRegister _eventRegister = new EventRegister();
+        public ConsoleInputObserver _inputObserver = new ConsoleInputObserver();
+        private List<IConsoleObserver> _observers;
 
-        public ConsoleEventManager() { }
-
-
-        public void RegisterStoreUserInputEvent()
+        public ConsoleEventManager() 
         {
-
-            _consoleEvent.UserInput += storeUserInput.OnUserInput;
+            _observers = new List<IConsoleObserver>();
         }
-        public void UnregisterStoreUserInputEvent()
+        public void Attach(IConsoleObserver observer)
         {
-
-            _consoleEvent.UserInput -= storeUserInput.OnUserInput;
+            _observers.Add(observer);
         }
-        public void DisplayUserInputs()
+        public void Detach(IConsoleObserver observer)
         {
-            storeUserInput.DisplayInputs();
+            _observers.Remove(observer);
+            
+        }
+        public void Notify()
+        {
+            _observers.ForEach(o =>
+            {
+                o.Update(this);
+            });
+        }
+
+        public double DisplayLastInput()
+        {
+            return _eventRegister.storeUserInput.DisplayLastInput();
         }
         public double UserInputDouble()
         {
-            RegisterStoreUserInputEvent();
+            this.Attach(_inputObserver);
+            _eventRegister.RegisterStoreUserInputEvent();
             Console.WriteLine("Please enter a number: ");
             double userInput = Convert.ToDouble(Console.ReadLine());
 
-            _consoleEvent.GrabUserInputDouble(userInput);
-
+            _eventRegister._consoleEvent.GrabUserInputDouble(userInput);
+            this.Notify();
+            this.Detach(_inputObserver);
             return userInput;
         }
         public Func<double, double, double> UserInputAction()
@@ -55,6 +67,21 @@ namespace ConsoleEventHandler
             return _retrievedOperation;
 
 
+        }
+        public void DivideByZeroException(Func<double, double, double> action, double secondInput)
+        {
+            try
+            {
+                if(action == Operations.Division && secondInput == 0)
+                {
+                    throw new DivideByZeroException();
+                }
+            }
+            catch(DivideByZeroException e)
+            {
+                Console.WriteLine("ERROR: " + e.Message);
+                Console.WriteLine("Skipping Calculation");
+            }
         }
 
 

@@ -20,8 +20,6 @@ namespace ConsoleEventHandler.ConsolePublisher
 
         public void GrabUserInputDouble(double userInput)
         {
-            Console.WriteLine("Grabbing User Input");
-
             OnUserInput(userInput);
         }
         protected virtual void OnUserInput(double userInput)

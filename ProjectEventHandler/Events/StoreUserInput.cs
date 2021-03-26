@@ -14,12 +14,10 @@ namespace ConsoleEventHandler
             userInputs.Add(consoleEvent.UserNumberInput);
 
         }
-        public void DisplayInputs()
+        public double DisplayLastInput()
         {
-            foreach(double numbers in userInputs)
-            {
-                Console.WriteLine(numbers + " ");
-            }
+            //Console.WriteLine(userInputs.LastOrDefault());
+            return userInputs.LastOrDefault();
         }
     }
 }

@@ -8,6 +8,7 @@ using ConsoleEventHandler.ConsolePublisher;
 using ConsoleCalculator.Subscribers;
 using ConsoleEventHandler;
 using ConsoleCalculator.RegisterEvents;
+using ConsoleEventHandler.Observers;
 namespace ConsoleCalculator
 {
     public class ConsoleManager
@@ -16,13 +17,13 @@ namespace ConsoleCalculator
         public static Calculator _calculator = new Calculator(new CalculatorBuilder());
         ConsoleEventManager _consoleEventManager = new ConsoleEventManager();
         EventRegister _consoleEvent = new EventRegister(_calculator);
+        ConsoleCalcObserver _calculationObserver = new ConsoleCalcObserver();
 
         public void Start()
         {
-            bool _decision = true;
+            bool _finalDecision = true;
             Console.WriteLine("Welcome to the Console Calculator. Please enter which operation you wish to perform: ");
-            
-            while (_decision)
+            while (_finalDecision)
             {
                 Console.WriteLine("Options: ('add', 'sub', 'mul', 'div', 'pow')");
                 var _action = _consoleEventManager.UserInputAction();
@@ -30,14 +31,17 @@ namespace ConsoleCalculator
 
                 double _secondInput = _consoleEventManager.UserInputDouble();
 
+                _consoleEventManager.DivideByZeroException(_action, _secondInput);
                 PerformCalculation(_firstInput, _secondInput, _action);
+
                 //GetCalculationList();
                 //DisplayUserInputs();
-                _decision = FinalDecision();
+                _finalDecision = FinalDecision();
                 
 
             }
         }
+
         bool FinalDecision()
 
         {
@@ -55,11 +59,12 @@ namespace ConsoleCalculator
         }
         public void PerformCalculation(double firstInput, double secondInput, Func<double, double, double> action)
         {
-
+            _consoleEventManager.Attach(_calculationObserver);
             _consoleEvent.RegisterDisplayCalculationEvent();
             var _result = _calculator.CreateCalculation(firstInput, secondInput, action);
+            _consoleEventManager.Notify();
             _consoleEvent.UnregisterDisplayCalculationEvent();
-
+            _consoleEventManager.Detach(_calculationObserver);
         }
         /*
         public void GetCalculationList()
@@ -70,21 +75,14 @@ namespace ConsoleCalculator
         }
         */
 
-        /*
-        void RegisterListOfCalculationsEvent()
-        {
-            _calculator._calcEvent.UsingCalculator += displayCalcList.OnCalculator;
-        }
-        */
         void StoreUserInput()
         {
-            _consoleEventManager.RegisterStoreUserInputEvent();
-            //_consoleEvent.UserInput += storeUserInput.OnUserInput;
+            _consoleEventManager._eventRegister.RegisterStoreUserInputEvent();
         }
         public void DisplayUserInputs()
         {
-            _consoleEventManager.DisplayUserInputs();
-            _consoleEventManager.UnregisterStoreUserInputEvent();
+            _consoleEventManager.DisplayLastInput();
+            _consoleEventManager._eventRegister.UnregisterStoreUserInputEvent();
         }
 
 

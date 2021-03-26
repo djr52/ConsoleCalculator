@@ -20,15 +20,6 @@ namespace ConsoleCalculator.RegisterEvents
         {
             this._calculator = calculator;
         }
-
-        /*
-        public void GetCalculationList()
-        {
-            RegisterDisplayCalculationEvent();
-            var _list = _calculator._calculatorBuilder.GetList();
-
-        }
-        */
         public void RegisterDisplayCalculationEvent()
         {
             _calculator._calcEvent.CalculationCompleted += displayCalc.OnCalculation;
@@ -39,21 +30,19 @@ namespace ConsoleCalculator.RegisterEvents
             _calculator._calcEvent.CalculationCompleted -= displayCalc.OnCalculation;
 
         }
-        /*
         void RegisterListOfCalculationsEvent()
         {
             _calculator._calcEvent.UsingCalculator += displayCalcList.OnCalculator;
         }
-        */
         void StoreUserInput()
         {
-            _consoleEventManager.RegisterStoreUserInputEvent();
+            _consoleEventManager._eventRegister.RegisterStoreUserInputEvent();
             //_consoleEvent.UserInput += storeUserInput.OnUserInput;
         }
-        public void DisplayUserInputs()
+        public void DisplayLastInput()
         {
-            _consoleEventManager.DisplayUserInputs();
-            _consoleEventManager.UnregisterStoreUserInputEvent();
+            _consoleEventManager.DisplayLastInput();
+            _consoleEventManager._eventRegister.UnregisterStoreUserInputEvent();
         }
 
     }
