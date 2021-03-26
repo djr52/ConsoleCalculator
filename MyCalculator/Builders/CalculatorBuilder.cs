@@ -32,7 +32,7 @@ namespace MyCalculator.Builders
         public List<ICalculation> GetList()
         {
             var listResult = _listOfCalculations.Calculations;
-            _calcEvent.UseCalculator(calculatorBuilder);
+            //_calcEvent.UseCalculator(calculatorBuilder);
             return listResult;
         }
     }

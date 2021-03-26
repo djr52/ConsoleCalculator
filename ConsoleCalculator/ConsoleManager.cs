@@ -13,12 +13,12 @@ namespace ConsoleCalculator
 {
     public class ConsoleManager
     {
-
-        public static Calculator _calculator = new Calculator(new CalculatorBuilder());
+        public static CalculatorBuilder _calculatorBuilder = new CalculatorBuilder();
+        public static Calculator _calculator = new Calculator(_calculatorBuilder);
         ConsoleEventManager _consoleEventManager = new ConsoleEventManager();
         EventRegister _consoleEvent = new EventRegister(_calculator);
         ConsoleCalcObserver _calculationObserver = new ConsoleCalcObserver();
-
+        DisplayListOfCalculations displayCalcList = new DisplayListOfCalculations();
         public void Start()
         {
             bool _finalDecision = true;
@@ -34,8 +34,7 @@ namespace ConsoleCalculator
                 _consoleEventManager.DivideByZeroException(_action, _secondInput);
                 PerformCalculation(_firstInput, _secondInput, _action);
 
-                //GetCalculationList();
-                //DisplayUserInputs();
+                Options();
                 _finalDecision = FinalDecision();
                 
 
@@ -45,18 +44,32 @@ namespace ConsoleCalculator
         bool FinalDecision()
 
         {
-            Console.WriteLine("Continue? 'Yes' or 'No'?");
+            Console.WriteLine("Continue? (y/n) ");
+            return Decision();
+
+        }
+        public void Options()
+        {
+            Console.WriteLine("Display calculation list? (y/n) ");
+            if (Decision())
+            {
+                GetCalculationList();
+            }
+          
+        }
+        bool Decision()
+        {
             string _decision = Console.ReadLine();
             _decision.ToLower();
-            if (_decision == "yes")
+            if (_decision == "y")
             {
-                
+
                 return true;
 
             }
             return false;
-
         }
+
         public void PerformCalculation(double firstInput, double secondInput, Func<double, double, double> action)
         {
             _consoleEventManager.Attach(_calculationObserver);
@@ -66,14 +79,16 @@ namespace ConsoleCalculator
             _consoleEvent.UnregisterDisplayCalculationEvent();
             _consoleEventManager.Detach(_calculationObserver);
         }
-        /*
-        public void GetCalculationList()
+        
+        void GetCalculationList()
         {
-            RegisterDisplayCalculationEvent();
-            var _list = _calculator._calculatorBuilder.GetList();
+
+            _calculator._calcEvent.UsingCalculator += displayCalcList.OnCalculator;
+            _calculator._calcEvent.UseCalculator(_calculatorBuilder);
+
 
         }
-        */
+
 
         void StoreUserInput()
         {

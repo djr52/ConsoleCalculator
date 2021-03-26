@@ -30,7 +30,7 @@ namespace ConsoleCalculator.RegisterEvents
             _calculator._calcEvent.CalculationCompleted -= displayCalc.OnCalculation;
 
         }
-        void RegisterListOfCalculationsEvent()
+        public void RegisterListOfCalculationsEvent()
         {
             _calculator._calcEvent.UsingCalculator += displayCalcList.OnCalculator;
         }

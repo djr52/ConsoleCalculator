@@ -9,7 +9,7 @@ namespace ConsoleCalculator.Subscribers
     {
         public void OnCalculator(object sender, CalculatorEventArgs calcEvent)
         {
-            Console.WriteLine("Im supposed to be displaying a list of calculations");
+            Console.WriteLine("Displaying a list of calculations.");
             
             var calcList = calcEvent.Calculator.GetList();
             foreach(var calculation in calcList)
