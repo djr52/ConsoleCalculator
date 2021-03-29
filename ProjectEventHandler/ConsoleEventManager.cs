@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using MyCalculator.CalculatorFunctions;
+using MyCalculator.Builders;
 using ConsoleEventHandler.Factories;
 using ConsoleEventHandler.Interface;
 using ConsoleEventHandler.ConsolePublisher;
@@ -68,6 +69,14 @@ namespace ConsoleEventHandler
 
 
         }
+        public void MenuOptions(CalculatorBuilder calculator)
+        {
+            Console.WriteLine("Select an Option");
+            var inputOp = new InputOperationFactory();
+            string _option = Console.ReadLine();
+            inputOp.getOptionStrategy(_option).getOption();
+        }
+
         public void ConsoleStartUp()
         {
             _eventRegister.RegisterConsoleStartEvent();

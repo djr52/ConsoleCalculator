@@ -9,6 +9,7 @@ using ConsoleCalculator.Subscribers;
 using ConsoleEventHandler;
 using ConsoleCalculator.RegisterEvents;
 using ConsoleEventHandler.Observers;
+using ConsoleCalculator.Factory;
 namespace ConsoleCalculator
 {
     public class ConsoleManager
@@ -35,7 +36,7 @@ namespace ConsoleCalculator
                 PerformCalculation(_firstInput, _secondInput, _action);
 
                 MenuOptions();
-                _finalDecision = FinalDecision();
+                //_finalDecision = FinalDecision(); //break; can work as well
                 
 
             }
@@ -50,11 +51,17 @@ namespace ConsoleCalculator
         }
         void MenuOptions()
         {
+            /*
             Console.WriteLine("Display calculation list? (y/n) ");
             if (Decision())
             {
                 GetCalculationList();
             }
+            */
+            Console.WriteLine("Select an Option");
+            var inputOp = new InputOptionFactory();
+            string _option = Console.ReadLine();
+            inputOp.getOptionStrategy(_option).getOption();
           
         }
         bool Decision()
@@ -80,7 +87,7 @@ namespace ConsoleCalculator
             _consoleEventManager.Detach(_calculationObserver);
         }
         
-        void GetCalculationList()
+        public void GetCalculationList()
         {
 
             _calculator._calcEvent.UsingCalculator += displayCalcList.OnCalculator;

@@ -37,7 +37,6 @@ namespace ConsoleCalculator.RegisterEvents
         void StoreUserInput()
         {
             _consoleEventManager._eventRegister.RegisterStoreUserInputEvent();
-            //_consoleEvent.UserInput += storeUserInput.OnUserInput;
         }
         public void DisplayLastInput()
         {
