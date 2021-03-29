@@ -49,7 +49,7 @@ namespace ConsoleEventHandler
             this.Attach(_inputObserver);
             _eventRegister.RegisterStoreUserInputEvent();
             Console.WriteLine("Please enter a number: ");
-            double userInput = Convert.ToDouble(Console.ReadLine());
+            double userInput = UserInputToDouble();
 
             _eventRegister._consoleEvent.GrabUserInputDouble(userInput);
             this.Notify();
@@ -60,7 +60,7 @@ namespace ConsoleEventHandler
         {
             var inputOp = new InputOperationFactory();
             Console.WriteLine("Options: ('add', 'sub', 'mul', 'div', 'pow')");
-            string _operation = Console.ReadLine();
+            string _operation = UserInput();
             var _retrievedOperation = inputOp.getOperationStrategy(_operation).getOperation();
 
             return _retrievedOperation;
@@ -72,7 +72,9 @@ namespace ConsoleEventHandler
         {
             _eventRegister.RegisterConsoleStartEvent();
             _eventRegister._consoleEvent.ConsoleStart();
-            
+            _eventRegister.UnregisterConsoleStartEvent();
+
+
         }
         public void DivideByZeroException(Func<double, double, double> action, double secondInput)
         {
@@ -90,7 +92,13 @@ namespace ConsoleEventHandler
             }
         }
 
-
-
+        double UserInputToDouble()
+        {
+            return Convert.ToDouble(Console.ReadLine());
+        }
+        string UserInput()
+        {
+            return Console.ReadLine();
+        }
     }
 }

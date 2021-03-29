@@ -19,7 +19,6 @@ namespace ConsoleCalculator
         ConsoleEventManager _consoleEventManager = new ConsoleEventManager();
         EventRegister _consoleEvent = new EventRegister(_calculator);
         ConsoleCalcObserver _calculationObserver = new ConsoleCalcObserver();
-        DisplayListOfCalculations displayCalcList = new DisplayListOfCalculations();
 
         public void Start()
         {
@@ -36,7 +35,6 @@ namespace ConsoleCalculator
                 PerformCalculation(_firstInput, _secondInput, _action);
 
                 MenuOptions();
-                //_finalDecision = FinalDecision(); //break; can work as well
                 
 
             }
@@ -44,11 +42,7 @@ namespace ConsoleCalculator
 
         void MenuOptions()
         {
-
-            _consoleEventManager._eventRegister.RegisterConsoleOptionsEvent();
-            _consoleEventManager._eventRegister._consoleEvent.ConsoleOptions();
-            _consoleEventManager._eventRegister.UnregisterConsoleOptionsEvent();
-
+            MenuOptionsEventTrigger();
             var inputOp = new InputOptionFactory();
             string _option = Console.ReadLine();
             inputOp.getOptionStrategy(_option).getOption();
@@ -64,26 +58,21 @@ namespace ConsoleCalculator
             _consoleEvent.UnregisterDisplayCalculationEvent();
             _consoleEventManager.Detach(_calculationObserver);
         }
-        
+        void MenuOptionsEventTrigger()
+        {
+            _consoleEventManager._eventRegister.RegisterConsoleOptionsEvent();
+            _consoleEventManager._eventRegister._consoleEvent.ConsoleOptions();
+            _consoleEventManager._eventRegister.UnregisterConsoleOptionsEvent();
+        }
         public void GetCalculationList()
         {
 
-            _calculator._calcEvent.UsingCalculator += displayCalcList.OnCalculator;
+            _consoleEvent.RegisterListOfCalculationsEvent();
             _calculator._calcEvent.UseCalculator(_calculatorBuilder);
-            _calculator._calcEvent.UsingCalculator -= displayCalcList.OnCalculator;
+            _consoleEvent.UnregisterListOfCalculationsEvent();
 
         }
 
-
-        void StoreUserInput()
-        {
-            _consoleEventManager._eventRegister.RegisterStoreUserInputEvent();
-        }
-        public void DisplayUserInputs()
-        {
-            _consoleEventManager.DisplayLastInput();
-            _consoleEventManager._eventRegister.UnregisterStoreUserInputEvent();
-        }
 
 
     }

@@ -27,6 +27,10 @@ namespace ConsoleEventHandler.RegisterEvents
         {
             _consoleEvent.ConsoleMessage += consoleStart.OnConsoleStart;
         }
+        public void UnregisterConsoleStartEvent()
+        {
+            _consoleEvent.ConsoleMessage -= consoleStart.OnConsoleStart;
+        }
         public void RegisterConsoleOptionsEvent()
         {
             _consoleEvent.ConsoleMessage += consoleOptions.OnConsoleOptions;
