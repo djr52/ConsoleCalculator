@@ -8,8 +8,6 @@ using ConsoleEventHandler.Interface;
 using ConsoleEventHandler.ConsolePublisher;
 using ConsoleEventHandler.Observers;
 using ConsoleEventHandler.RegisterEvents;
-//using Microsoft.Extensions.Logging;
-//using Microsoft.Extensions.DependencyInjection;
 
 
 namespace ConsoleEventHandler
@@ -68,13 +66,6 @@ namespace ConsoleEventHandler
             return _retrievedOperation;
 
 
-        }
-        public void MenuOptions(CalculatorBuilder calculator)
-        {
-            Console.WriteLine("Select an Option");
-            var inputOp = new InputOperationFactory();
-            string _option = Console.ReadLine();
-            inputOp.getOptionStrategy(_option).getOption();
         }
 
         public void ConsoleStartUp()

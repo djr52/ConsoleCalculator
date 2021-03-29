@@ -34,6 +34,14 @@ namespace ConsoleCalculator.RegisterEvents
         {
             _calculator._calcEvent.UsingCalculator += displayCalcList.OnCalculator;
         }
+        public void RegisterConsoleOptionsEvent()
+        {
+            _consoleEventManager._eventRegister.RegisterConsoleOptionsEvent();
+        }
+        public void UnregisterConsoleOptionsEvent()
+        {
+
+        }
         void StoreUserInput()
         {
             _consoleEventManager._eventRegister.RegisterStoreUserInputEvent();

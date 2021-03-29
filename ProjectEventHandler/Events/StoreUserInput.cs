@@ -4,7 +4,7 @@ using System.Text;
 using ConsoleEventHandler.ConsolePublisher;
 using System.Linq;
 
-namespace ConsoleEventHandler
+namespace ConsoleEventHandler.Events
 {
     public class StoreUserInput
     {

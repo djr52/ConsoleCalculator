@@ -49,5 +49,14 @@ namespace ConsoleEventHandler.ConsolePublisher
             if (ConsoleMessage != null)
                 ConsoleMessage(this, EventArgs.Empty);
         }
+        public void ConsoleOptions()
+        {
+            OnConsoleOptions();
+        }
+        protected virtual void OnConsoleOptions()
+        {
+            if (ConsoleMessage != null)
+                ConsoleMessage(this, EventArgs.Empty);
+        }
     }
 }

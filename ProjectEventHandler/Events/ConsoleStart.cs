@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ConsoleEventHandler
+namespace ConsoleEventHandler.Events
 {
     public class ConsoleStart
     {

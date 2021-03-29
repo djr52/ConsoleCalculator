@@ -42,39 +42,17 @@ namespace ConsoleCalculator
             }
         }
 
-        bool FinalDecision()
-
-        {
-            Console.WriteLine("Continue? (y/n) ");
-            return Decision();
-
-        }
         void MenuOptions()
         {
-            /*
-            Console.WriteLine("Display calculation list? (y/n) ");
-            if (Decision())
-            {
-                GetCalculationList();
-            }
-            */
-            Console.WriteLine("Select an Option");
+
+            _consoleEventManager._eventRegister.RegisterConsoleOptionsEvent();
+            _consoleEventManager._eventRegister._consoleEvent.ConsoleOptions();
+            _consoleEventManager._eventRegister.UnregisterConsoleOptionsEvent();
+
             var inputOp = new InputOptionFactory();
             string _option = Console.ReadLine();
             inputOp.getOptionStrategy(_option).getOption();
           
-        }
-        bool Decision()
-        {
-            string _decision = Console.ReadLine();
-            _decision.ToLower();
-            if (_decision == "y")
-            {
-
-                return true;
-
-            }
-            return false;
         }
 
         public void PerformCalculation(double firstInput, double secondInput, Func<double, double, double> action)
@@ -92,7 +70,7 @@ namespace ConsoleCalculator
 
             _calculator._calcEvent.UsingCalculator += displayCalcList.OnCalculator;
             _calculator._calcEvent.UseCalculator(_calculatorBuilder);
-
+            _calculator._calcEvent.UsingCalculator -= displayCalcList.OnCalculator;
 
         }
 
