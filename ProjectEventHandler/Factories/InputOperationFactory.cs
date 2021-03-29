@@ -23,10 +23,13 @@ namespace ConsoleEventHandler.Factories
         {
             if (!_operationMap.ContainsKey(operation))
             {
-                Console.WriteLine("Invalid Operation. Inputs will not be calculated.");
-                return DEFAULT_OPERATION;
+                getDefaultStrategy();
             }
             return _operationMap[operation];
+        }
+        private OperationStrategy getDefaultStrategy()
+        {
+                return DEFAULT_OPERATION;
         }
 
     }

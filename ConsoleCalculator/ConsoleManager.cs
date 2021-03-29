@@ -19,13 +19,13 @@ namespace ConsoleCalculator
         EventRegister _consoleEvent = new EventRegister(_calculator);
         ConsoleCalcObserver _calculationObserver = new ConsoleCalcObserver();
         DisplayListOfCalculations displayCalcList = new DisplayListOfCalculations();
+
         public void Start()
         {
             bool _finalDecision = true;
-            Console.WriteLine("Welcome to the Console Calculator. Please enter which operation you wish to perform: ");
+            _consoleEventManager.ConsoleStartUp();
             while (_finalDecision)
             {
-                Console.WriteLine("Options: ('add', 'sub', 'mul', 'div', 'pow')");
                 var _action = _consoleEventManager.UserInputAction();
                 double _firstInput = _consoleEventManager.UserInputDouble();
 
@@ -34,7 +34,7 @@ namespace ConsoleCalculator
                 _consoleEventManager.DivideByZeroException(_action, _secondInput);
                 PerformCalculation(_firstInput, _secondInput, _action);
 
-                Options();
+                MenuOptions();
                 _finalDecision = FinalDecision();
                 
 
@@ -48,7 +48,7 @@ namespace ConsoleCalculator
             return Decision();
 
         }
-        public void Options()
+        void MenuOptions()
         {
             Console.WriteLine("Display calculation list? (y/n) ");
             if (Decision())

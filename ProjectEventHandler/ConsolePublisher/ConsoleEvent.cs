@@ -7,6 +7,7 @@ namespace ConsoleEventHandler.ConsolePublisher
     public class ConsoleEvent
     {
         public event EventHandler<ConsoleEventArgs> UserInput;
+        public event EventHandler ConsoleMessage;
 
         public void GrabUserCommandInput(string userInput)
         {
@@ -39,6 +40,14 @@ namespace ConsoleEventHandler.ConsolePublisher
             if (UserInput != null)
                 UserInput(this, new ConsoleEventArgs() { UserActionInput = userInput });
         }
-
+        public void ConsoleStart()
+        {
+            OnConsoleStartUp();
+        }
+        protected virtual void OnConsoleStartUp()
+        {
+            if (ConsoleMessage != null)
+                ConsoleMessage(this, EventArgs.Empty);
+        }
     }
 }

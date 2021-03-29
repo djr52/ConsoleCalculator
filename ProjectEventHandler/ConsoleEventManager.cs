@@ -60,13 +60,19 @@ namespace ConsoleEventHandler
         public Func<double, double, double> UserInputAction()
         {
             var inputOp = new InputOperationFactory();
-            
+            Console.WriteLine("Options: ('add', 'sub', 'mul', 'div', 'pow')");
             string _operation = Console.ReadLine();
             var _retrievedOperation = inputOp.getOperationStrategy(_operation).getOperation();
 
             return _retrievedOperation;
 
 
+        }
+        public void ConsoleStartUp()
+        {
+            _eventRegister.RegisterConsoleStartEvent();
+            _eventRegister._consoleEvent.ConsoleStart();
+            
         }
         public void DivideByZeroException(Func<double, double, double> action, double secondInput)
         {
@@ -83,6 +89,7 @@ namespace ConsoleEventHandler
                 Console.WriteLine("Skipping Calculation");
             }
         }
+
 
 
     }

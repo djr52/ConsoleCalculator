@@ -11,6 +11,7 @@ namespace ConsoleEventHandler.RegisterEvents
     {
         public ConsoleEvent _consoleEvent = new ConsoleEvent();
         public StoreUserInput storeUserInput = new StoreUserInput();
+        public ConsoleStart consoleStart = new ConsoleStart();
         public void RegisterStoreUserInputEvent()
         {
 
@@ -22,6 +23,10 @@ namespace ConsoleEventHandler.RegisterEvents
         {
 
             _consoleEvent.UserInput -= storeUserInput.OnUserInput;
+        }
+        public void RegisterConsoleStartEvent()
+        {
+            _consoleEvent.ConsoleMessage += consoleStart.OnConsoleStart;
         }
     }
 }
