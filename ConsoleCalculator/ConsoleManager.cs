@@ -51,26 +51,33 @@ namespace ConsoleCalculator
 
         public void PerformCalculation(double firstInput, double secondInput, Func<double, double, double> action)
         {
-            _consoleEventManager.Attach(_calculationObserver);
-            _consoleEvent.RegisterDisplayCalculationEvent();
+            InitializeCalculationEvent();
             var _result = _calculator.CreateCalculation(firstInput, secondInput, action);
             _consoleEventManager.Notify();
+            DeinitializeCalculationEvent();
+
+        }
+        void InitializeCalculationEvent()
+        {
+            _consoleEventManager.Attach(_calculationObserver);
+            _consoleEvent.RegisterDisplayCalculationEvent();
+        }
+        void DeinitializeCalculationEvent()
+        {
             _consoleEvent.UnregisterDisplayCalculationEvent();
             _consoleEventManager.Detach(_calculationObserver);
         }
         void MenuOptionsEventTrigger()
         {
             _consoleEventManager._eventRegister.RegisterConsoleOptionsEvent();
-            _consoleEventManager._eventRegister._consoleEvent.ConsoleOptions();
+            _consoleEventManager._eventRegister._consoleEvent.WriteConsoleMessage();
             _consoleEventManager._eventRegister.UnregisterConsoleOptionsEvent();
         }
         public void GetCalculationList()
         {
-
             _consoleEvent.RegisterListOfCalculationsEvent();
             _calculator._calcEvent.UseCalculator(_calculatorBuilder);
             _consoleEvent.UnregisterListOfCalculationsEvent();
-
         }
 
 

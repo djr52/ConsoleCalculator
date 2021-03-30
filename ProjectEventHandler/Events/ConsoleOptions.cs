@@ -6,11 +6,12 @@ namespace ConsoleEventHandler.Events
 {
     public class ConsoleOptions
     {
-        public void OnConsoleOptions(object sender, EventArgs e)
+        public void OnConsoleMessage(object sender, EventArgs e)
         {
             Console.WriteLine("Select an option by entering its corresponding numbers: " +
-                "\n | 1 | Display History of Calculations " +
-                "\n | 2 | Exit Calculator");
+                "\n | 1 | Continue Calculations " +
+                "\n | 2 | Display Calculation History " +
+                "\n | 3 | Exit Calculator");
         }
     }
 }

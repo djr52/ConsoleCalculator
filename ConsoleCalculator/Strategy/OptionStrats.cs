@@ -5,18 +5,24 @@ using ConsoleCalculator.Interface;
 using ConsoleCalculator.RegisterEvents;
 namespace ConsoleCalculator.Strategy
 {
-    //2 - 3 options (view calculation history, continue calculations(if not exit program), and potentially delete calc history)
+
     public class OptionOne : IOptionStrategy
+    {        
+        public void getOption()
+        {
+            
+        }
+    }
+
+    public class OptionTwo : IOptionStrategy
     {
-        public EventRegister _eventRegister;
         public ConsoleManager consoleManager = new ConsoleManager();
         public void getOption()
         {
             consoleManager.GetCalculationList();
         }
     }
-
-    public class OptionTwo : IOptionStrategy
+    public class OptionThree : IOptionStrategy
     {
         public void getOption()
         {

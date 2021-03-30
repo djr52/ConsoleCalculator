@@ -9,7 +9,6 @@ namespace ConsoleEventHandler.Observers
     {
         public void Update(ConsoleEventManager subject)
         {
-            
             Console.WriteLine("Calculation Complete. ");
         }
     }

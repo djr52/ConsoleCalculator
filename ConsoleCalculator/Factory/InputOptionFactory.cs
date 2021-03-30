@@ -13,6 +13,7 @@ namespace ConsoleCalculator.Factory
         {
             _optionMap["1"] = new OptionOne();
             _optionMap["2"] = new OptionTwo();
+            _optionMap["3"] = new OptionThree();
 
         }
 

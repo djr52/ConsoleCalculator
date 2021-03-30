@@ -16,7 +16,6 @@ namespace ConsoleEventHandler.Events
         }
         public double DisplayLastInput()
         {
-            //Console.WriteLine(userInputs.LastOrDefault());
             return userInputs.LastOrDefault();
         }
     }

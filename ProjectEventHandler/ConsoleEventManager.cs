@@ -17,6 +17,7 @@ namespace ConsoleEventHandler
     {
         public EventRegister _eventRegister = new EventRegister();
         public ConsoleInputObserver _inputObserver = new ConsoleInputObserver();
+        InputOperationFactory _inputOp = new InputOperationFactory();
         private List<IConsoleObserver> _observers;
 
         public ConsoleEventManager() 
@@ -44,11 +45,12 @@ namespace ConsoleEventHandler
         {
             return _eventRegister.storeUserInput.DisplayLastInput();
         }
+
         public double UserInputDouble()
         {
             this.Attach(_inputObserver);
             _eventRegister.RegisterStoreUserInputEvent();
-            Console.WriteLine("Please enter a number: ");
+            ConsoleDoubleInput();
             double userInput = UserInputToDouble();
 
             _eventRegister._consoleEvent.GrabUserInputDouble(userInput);
@@ -58,23 +60,37 @@ namespace ConsoleEventHandler
         }
         public Func<double, double, double> UserInputAction()
         {
-            var inputOp = new InputOperationFactory();
-            Console.WriteLine("Options: ('add', 'sub', 'mul', 'div', 'pow')");
+            ConsoleActionInput();
             string _operation = UserInput();
-            var _retrievedOperation = inputOp.getOperationStrategy(_operation).getOperation();
-
+            var _retrievedOperation = _inputOp.getOperationStrategy(_operation).getOperation();
             return _retrievedOperation;
-
 
         }
 
         public void ConsoleStartUp()
         {
             _eventRegister.RegisterConsoleStartEvent();
-            _eventRegister._consoleEvent.ConsoleStart();
+            _eventRegister._consoleEvent.WriteConsoleMessage();
             _eventRegister.UnregisterConsoleStartEvent();
 
-
+        }
+        void ConsoleDoubleInput()
+        {
+            _eventRegister.RegisterConsoleDoubleInput();
+            _eventRegister._consoleEvent.WriteConsoleMessage();
+            _eventRegister.UnregisterConsoleDoubleInput();
+        }
+        void ConsoleActionInput()
+        {
+            _eventRegister.RegisterConsoleActionInput();
+            _eventRegister._consoleEvent.WriteConsoleMessage();
+            _eventRegister.UnregisterConsoleActionInput();
+        }
+        void ConsoleDivideByZero()
+        {
+            _eventRegister.RegisterDivideByZero();
+            _eventRegister._consoleEvent.WriteConsoleMessage();
+            _eventRegister.UnregisterDivideByZero();
         }
         public void DivideByZeroException(Func<double, double, double> action, double secondInput)
         {
@@ -87,8 +103,7 @@ namespace ConsoleEventHandler
             }
             catch(DivideByZeroException e)
             {
-                Console.WriteLine("ERROR: " + e.Message);
-                Console.WriteLine("Skipping Calculation");
+                ConsoleDivideByZero();
             }
         }
 

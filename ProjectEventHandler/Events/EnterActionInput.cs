@@ -4,11 +4,11 @@ using System.Text;
 
 namespace ConsoleEventHandler.Events
 {
-    public class ConsoleStart
+    public class EnterActionInput
     {
         public void OnConsoleMessage(object sender, EventArgs e)
         {
-            Console.WriteLine("Welcome to the Console Calculator. Please enter which operation you wish to perform: ");
+            Console.WriteLine("Options: ('add', 'sub', 'mul', 'div', 'pow')");
         }
     }
 }

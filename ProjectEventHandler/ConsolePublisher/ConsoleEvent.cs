@@ -40,23 +40,16 @@ namespace ConsoleEventHandler.ConsolePublisher
             if (UserInput != null)
                 UserInput(this, new ConsoleEventArgs() { UserActionInput = userInput });
         }
-        public void ConsoleStart()
+        public void WriteConsoleMessage()
         {
-            OnConsoleStartUp();
+            OnConsoleMessage();
         }
-        protected virtual void OnConsoleStartUp()
-        {
-            if (ConsoleMessage != null)
-                ConsoleMessage(this, EventArgs.Empty);
-        }
-        public void ConsoleOptions()
-        {
-            OnConsoleOptions();
-        }
-        protected virtual void OnConsoleOptions()
+        protected virtual void OnConsoleMessage()
         {
             if (ConsoleMessage != null)
                 ConsoleMessage(this, EventArgs.Empty);
+
         }
+
     }
 }
